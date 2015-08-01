@@ -4,19 +4,19 @@ var swig = require("swig");
 var app = express();
 app.use(morgan('dev'))
 
-console.log("Before setting app parameters");
+var routes = require("./routes/");
+app.use("/",routes);
+
+//console.log("Before setting app parameters");
 app.engine('html',require("swig").renderFile);
 app.set('view engine',"html");
 app.set('views', __dirname + '/views/');
+app.use(express.static(__dirname + '/public'));
 
-console.log("Before setting swig cache off");
+//console.log("Before setting swig cache off");
 swig.setDefaults({ cache: false });
 
-console.log("Before app.get");
-app.get('/', function (req, res) {
-  var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-  res.render('index', {title: 'Hall of Fame', people: people});
-});
+//console.log("Before app.get");
 
 console.log("Before server listening");
 var server = app.listen(3000,function(){

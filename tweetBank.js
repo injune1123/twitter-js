@@ -13,7 +13,7 @@ var find = function (properties) {
   return _.where(data, properties);
 };
 
-module.exports = { add: add, list: list, find: find };
+module.exports = { add: add, find: find };
 
 
 var randArrayEl = function(arr) {
@@ -32,7 +32,10 @@ var getFakeTweet = function() {
 };
 
 for(var i=0; i<10; i++) {
-  module.exports.add( getFakeName(), getFakeTweet() );
+  //console.log("Creating random tweet!");
+  module.exports.add(getFakeName(), getFakeTweet());
 }
+
+module.exports.list = list;
 
 console.log(data);

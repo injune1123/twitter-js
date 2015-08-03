@@ -4,7 +4,11 @@ var id = 0;
 
 var add = function (name, text) {
   id++;
-  data.push({name: name, text: text, id: id});
+
+  // Remove space between first and last name, to make ID
+  var nameID = "";
+  nameID = name.replace(/\s+/g, '') + id;
+  data.push({name: name, text: text, id: nameID});
   //console.log({name: name, text: text, id: id});
 };
 

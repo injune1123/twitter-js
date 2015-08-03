@@ -19,8 +19,11 @@ router.get('/users/:name', function(req, res) {
 router.get('/users/:name/tweets/:id', function(req, res) {
   var name = req.params.name;
   var reqID = 1*req.params.id;
-  var list = tweetBank.find({id: reqID});
-  console.log("Found list: " + list.length);
+  var nameID = "";
+  nameID = name.replace(/\s+/g, '') + reqID;
+
+  var list = tweetBank.find({id: nameID});
+  //console.log("Found list: " + list.length);
   res.render('index', {title: 'Twitter.js - Posts by ' + name, tweets: list});
 });
 

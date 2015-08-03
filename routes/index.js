@@ -12,17 +12,17 @@ router.get('/', function (req, res) {
 router.get('/users/:name', function(req, res) {
   var name = req.params.name;
   var list = tweetBank.find({name: name});
-  console.log("List: " + list);
+  console.log("List length: " + list.length);
   res.render( 'index', {title: 'Twitter.js - Posts by '+name, tweets: list});
 });
 
 router.get('/users/:name/tweets/:id', function(req, res) {
   var name = req.params.name;
   var reqID = 1*req.params.id;
-  var nameID = "";
-  nameID = name.replace(/\s+/g, '') + reqID;
-
-  var list = tweetBank.find({id: nameID});
+  //var nameID = "";
+  //nameID = name.replace(/\s+/g, '') + reqID;
+  var nameList = tweetBank.find({name: name})
+  var list = tweetBank.subFind(nameList, {id: reqID});
   //console.log("Found list: " + list.length);
   res.render('index', {title: 'Twitter.js - Posts by ' + name, tweets: list});
 });

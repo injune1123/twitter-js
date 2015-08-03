@@ -1,8 +1,11 @@
 var _ = require("underscore");
 var data = [];
+var id = 0;
 
 var add = function (name, text) {
-  data.push({ name: name, text: text });
+  id++;
+  data.push({name: name, text: text, id: id});
+  //console.log({name: name, text: text, id: id});
 };
 
 var list = function () {
@@ -10,10 +13,16 @@ var list = function () {
 };
 
 var find = function (properties) {
+  //console.log("Looking for properties: ");
+  console.log(Object.keys(properties));
+  console.log(properties["id"]);
+
   return _.where(data, properties);
+  //console.log(6 === properties["id"]);
+  //return _.where(data,{id: properties["id"]});
 };
 
-module.exports = { add: add, find: find };
+module.exports = {add: add, find: find};
 
 
 var randArrayEl = function(arr) {

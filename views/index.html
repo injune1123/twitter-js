@@ -7,15 +7,21 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
-      <b>Your Name</b><br>
-      100 followers
+      <img src="http://photos1.meetupstatic.com/photos/event/5/0/c/a/600_397340682.jpeg" height="50" width="50"><br>
+      <b>Jugal Shah</b><br>
+      500 followers
     </div>
     <div class="col-md-9">
 
       <!-- display tweets here -->
+      <br><h1 style="font-size:200%">All Tweets</h1><br>
+      <br><h1 style="font-size:200%">{{title}}</h1><br>
+
       {% for tweet in tweets %}
-        <li>{{tweet.text}}</li>
+        <img src="http://cliparts.co/cliparts/yik/Are/yikArebiE.gif" height="30" width="30">
+        <a href="/users/{{tweet.name}}">{{tweet.name}}</a>
+        <br>{{tweet.text}}<br>
+        <br>
       {% endfor %}
 
     </div>

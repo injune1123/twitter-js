@@ -14,7 +14,7 @@ app.set('views', __dirname + '/views/');
 app.use(express.static(__dirname + '/public'));
 
 //console.log("Before setting swig cache off");
-swig.setDefaults({ cache: false });
+swig.setDefaults({cache: false});
 
 //console.log("Before app.get");
 

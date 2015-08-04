@@ -1,8 +1,16 @@
 var _ = require("underscore");
 var data = [];
+var id = 0;
 
 var add = function (name, text) {
-  data.push({ name: name, text: text });
+  var id = find({name: name}).length + 1;
+  //id++;
+
+  // Remove space between first and last name, to make ID
+  //var nextID = "";
+  //nameID = name.replace(/\s+/g, '') + id;
+  data.push({name: name, text: text, id: id});
+  //console.log({name: name, text: text, id: id});
 };
 
 var list = function () {
@@ -10,10 +18,23 @@ var list = function () {
 };
 
 var find = function (properties) {
+  //console.log("Looking for properties: ");
+  //console.log(Object.keys(properties));
+  //console.log(properties["id"]);
+
   return _.where(data, properties);
+  //console.log(6 === properties["id"]);
+  //return _.where(data,{id: properties["id"]});
 };
 
-module.exports = { add: add, list: list, find: find };
+// Finds in an already filtered list
+var subFind = function (list, properties) {
+  return _.where(list, properties);
+};
+
+
+module.exports = {add: add, find: find, subFind: subFind};
+
 
 var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -31,7 +52,10 @@ var getFakeTweet = function() {
 };
 
 for(var i=0; i<10; i++) {
-  module.exports.add( getFakeName(), getFakeTweet());
+  //console.log("Creating random tweet!");
+  module.exports.add(getFakeName(), getFakeTweet());
 }
 
-console.log(data);
+module.exports.list = list;
+
+//console.log(data);

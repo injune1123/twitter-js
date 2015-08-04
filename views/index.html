@@ -3,22 +3,44 @@
 {% block content %}
   
   <div class="page-header">
-    <h1>Welcome to Twitter.js, Nimit!</h1>
+    <h1>Welcome to Twitter.js, Jun!</h1>
   </div>
   <div class="row">
     <div class="col-md-3">
-      <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
+      <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAKcAAAAJDEzYmM3Y2I2LTZhNzEtNDFmOC1iMjE1LTJjN2Y4NDBkZTdhNQ.jpg"  height = "100" width = "100"><br>
       <b>Your Name</b><br>
       100 followers
     </div>
     <div class="col-md-9">
     
+{% if showForm %}
+  <form action="/submit" method="POST">
+    <label for="name_field">Name:</label>
+    <input name="name" type="text" id="name_field" />
+
+    <label for="text_field">Text:</label>
+    <input name="text" type="text" id="text_field" style="width: 350px;" />
+
+    <input type="submit" value="Submit" />
+  </form>
+{% endif %}
+
+
       <!-- display tweets here -->
+      <br><h><font size="6">All Tweets</font></h><br><br>
+
       {% for tweet in tweets %}
-        <li>{{tweet.text}}</li>
+      	<img src = "http://modernfarmer.com/wp-content/uploads/2014/12/squirrel.jpg" height = "30" width = "30" />
+      	
+      	<a href="/users/{{tweet.name}}">{{tweet.name}}</a> 
+
+        <br>{{tweet.text}}<br>
+        <br>
       {% endfor %}
       
     </div>
   </div>
     
+
+
 {% endblock %}

@@ -4,7 +4,7 @@ var swig = require("swig");
 var app = express();
 var routes = require('./routes/');
 var bodyParser = require("body-parser");
-
+var router = routes(io);
 
 /**
 http://stackoverflow.com/questions/9177049/express-js-req-body-undefined/13779626#13779626
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //Above are considered as configs,they should be set before routes
 
-app.use('/', routes);
+app.use('/', router);
 
 app.use(function (req, res) {
   res.setHeader('Content-Type', 'text/plain')
@@ -38,6 +38,13 @@ var server = app.listen(3000,function(){
  console.log('server listening', host, port);
 
 });
+
+var socketio = require('socket.io');
+// ...
+var io = socketio.listen(server);
+
+// io.sockets.emit('new_tweet', { /* tweet info */ });
+// Shall it be here?
 
 app.engine("html", require("swig").renderFile);
 app.set("view engine","html");

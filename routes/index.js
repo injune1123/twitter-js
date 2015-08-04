@@ -3,18 +3,21 @@ var router = express.Router();
 // could use one line instead: var router = require('express').Router();
 var tweetBank = require('../tweetBank');
 
+
 router.get('/', function (req, res) {
   var tweets = tweetBank.list();
   //console.log("Tweets: " + tweets);
   res.render( 'index', {title: 'Twitter.js', tweets: tweets, showForm: true  });
 });
 
+
 router.get('/users/:name', function(req, res) {
   var name = req.params.name;
   var list = tweetBank.find({name: name});
   console.log("List length: " + list.length);
-  res.render( 'index', {title: 'Twitter.js - Posts by '+name, tweets: list, showForm: true });
+  res.render( 'index', {title: 'Twitter.js - Posts by '+name, tweets: list, showForm: true, username: name});
 });
+
 
 router.get('/users/:name/tweets/:id', function(req, res) {
   var name = req.params.name;
@@ -27,6 +30,7 @@ router.get('/users/:name/tweets/:id', function(req, res) {
   res.render('index', {title: 'Twitter.js - Posts by ' + name, tweets: list});
 });
 
+
 router.post('/submit', function(req, res) {
   console.log(req.body)
   var name = req.body.name;
@@ -36,4 +40,9 @@ router.post('/submit', function(req, res) {
 });
 
 
-module.exports = router;
+module.exports = function (io) {
+  // ...
+  // route definitions, etc.
+  // ...
+  return router;
+};

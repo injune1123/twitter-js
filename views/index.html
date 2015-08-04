@@ -12,11 +12,11 @@
       100 followers
     </div>
     <div class="col-md-9">
-    
+
 {% if showForm %}
   <form action="/submit" method="POST">
     <label for="name_field">Name:</label>
-    <input name="name" type="text" id="name_field" />
+    <input name="name" type="text" id="name_field" value="{{username}}"/>
 
     <label for="text_field">Text:</label>
     <input name="text" type="text" id="text_field" style="width: 350px;" />
@@ -25,6 +25,9 @@
   </form>
 {% endif %}
 
+ <script type="text/javascript">
+
+ </script>
 
       <!-- display tweets here -->
       <br><h><font size="6">All Tweets</font></h><br><br>
@@ -40,6 +43,7 @@
       
     </div>
   </div>
+
     
 
 
